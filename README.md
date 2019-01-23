@@ -32,7 +32,7 @@ The MiniTable is a non-visual component where you can store records with fields 
 
 `Count: Integer` = Returns the record count of the table (read-only property)
 
-`F[FieldName: String]: Variant` = Read/write a field value at current selected record.
+`F[FieldName: String]: Variant` = Read/write a field value at current selected record. The FieldName is case-insensitive.
 
 ## Procedures/Functions
 
@@ -91,7 +91,7 @@ function Next: Boolean;
 ```
 Select the next record in the table, based in the current index position. This method is useful to iterate all record. See example below:
 
-```
+```delphi
 MiniTable.SelReset;
 while MiniTable.Next do
 begin
@@ -99,4 +99,30 @@ begin
 end;
 ```
 
+```delphi
+procedure New;
+```
+Create a new record at the end of the table position and select it, so you can imediatelly start write fields.
 
+```delphi
+procedure Insert(Index: Integer);
+```
+Insert a new record at the index position and select it, so you can imediatelly start write fields.
+
+```delphi
+procedure Post;
+```
+Writes all change in the current record to the table. You don't need to start editting of the record. See example below:
+
+```delphi
+MiniTable.New;
+MiniTable.F['Name'] := 'Jhon';
+MiniTable.F['Phone'] := '1111-2222';
+MiniTable.Post;
+```
+or:
+```delphi
+MiniTable.Select(3);
+MiniTable.F['Phone'] := '1111-2222';
+MiniTable.Post;
+```
