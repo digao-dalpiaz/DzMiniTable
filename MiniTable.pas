@@ -73,9 +73,18 @@ type
     property JumpOpen: Boolean read FJumpOpen write FJumpOpen default True;
   end;
 
+procedure Register;
+
 implementation
 
 uses System.SysUtils;
+
+procedure Register;
+begin
+  RegisterComponents('Digao', [TMiniTable]);
+end;
+
+//
 
 constructor TMiniTable.Create(AOwner: TComponent);
 begin
