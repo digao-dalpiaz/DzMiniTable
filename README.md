@@ -14,6 +14,17 @@ But don't worry, here is the solution.
 
 The MiniTable is a non-visual component where you can store records with fields and values, and you can name the field, so you don't need to worry at future versions. You can add new fields at any time, just reading and writing them.
 
+## Installing
+
+Just add the MiniTable.pas to a package. Then build and install.
+
+Note: To ensure the component is displayed with its icon, add the following line to the Package Source:
+```
+{$R MiniTable.dcr}
+```
+
+Supports Delphi XE2..Delphi 10.3 Rio
+
 ## Published Properties
 
 `AutoSave: Boolean` = Enables auto save to specifyed FileName at any method that writes any change to the table
