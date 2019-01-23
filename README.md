@@ -126,3 +126,35 @@ MiniTable.Select(3);
 MiniTable.F['Phone'] := '1111-2222';
 MiniTable.Post;
 ```
+
+```delphi
+procedure Delete;
+```
+Delete the current selected record
+
+```delphi
+procedure MoveDown;
+```
+Move the current record to one index down
+
+```delphi
+procedure MoveUp;
+```
+Move the current record to one index up
+
+```delphi
+function Find(const FieldName: String; const Value: Variant; KeepIndex: Boolean = False): Boolean;
+```
+Use this function to locate any field value on all records. The KeepIndex parameter allows you to specify if you want keep the current position of record, just returning true or false if the field value was located.
+If you want to auto-select the found record, use KeepIndex=False (the default parameter value).
+
+```delphi
+function FieldExists(const FieldName: String): Boolean;
+```
+Returns true if the FieldName exists at current selected record.
+
+```delphi
+function ReadDef(const FieldName: String; const Default: Variant): Variant;
+```
+This functions is the same as the F property, but here you can specify a default value when the Field does not exist in the record.
+
