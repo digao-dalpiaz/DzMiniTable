@@ -52,6 +52,7 @@ Supports Delphi XE2..Delphi 10.3 Rio
 `Count: Integer` = Returns the record count of the table (read-only property)
 
 `F[FieldName: String]: Variant` = Read/write a field value at current selected record. The FieldName is case-insensitive.
+If you are reading field value and the field does not exist, the result is an empty string.
 
 ## Procedures/Functions
 
