@@ -2,6 +2,14 @@
 
 ## Delphi non-visual component to handle small dynamic table stored as plain text
 
+- [Component Description](#component-description)
+- [Installing](#installing)
+- [Published Properties](#published-properties)
+- [Public Properties](#public-properties)
+- [Procedures/Functions](#proceduresfunctions)
+
+## Component Description
+
 When you are working on your software project, you always need to store some data into a INI file or some text file, as a configuration file or other information.
 
 So, the options you have is INI file, or plain text. And almost always you need a table with some fields.
