@@ -16,7 +16,7 @@ So, the options you have is INI file, or plain text. And almost always you need 
 
 In a plain text, you can use one record per line, and separate fields using tab character, or pipe character, or another one. But you have some problems with this method: you need to take care about the separator char, not using it at fields value; and you have a biggest problem: in a future version, if you need to add a column, you lose the compatibility at this file when there are already data stored.
 
-If you are working with INI file, you can specify the field names, but even that you have problems to store one record per section, and is difficult to reorder records, delete records and name the record.
+If you are working with INI file, you can specify the field names, but even that, you have problems to store one record per section, and is difficult to reorder records, delete records and name the record.
 
 But don't worry, here is the solution.
 
