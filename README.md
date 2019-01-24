@@ -24,12 +24,7 @@ The MiniTable is a non-visual component where you can store records with fields 
 
 ## Installing
 
-Just add the MiniTable.pas to a package. Then build and install.
-
-Note: To ensure the component is displayed with its icon, add the following line to the Package Source:
-```
-{$R MiniTable.dcr}
-```
+Open MiniTablePackage in Delphi. Then Build and Install.
 
 Supports Delphi XE2..Delphi 10.3 Rio
 
