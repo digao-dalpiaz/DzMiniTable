@@ -26,6 +26,8 @@ The MiniTable is a non-visual component where you can store records with fields 
 
 Open MiniTablePackage in Delphi. Then Build and Install.
 
+> Add sub-path Lib to the Library paths at Tool\Options.
+
 Supports Delphi XE2..Delphi 10.3 Rio
 
 ## Published Properties
