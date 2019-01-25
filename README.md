@@ -2,6 +2,8 @@
 
 ## Delphi non-visual component to handle small dynamic table stored as plain text
 
+![Delphi Supported Versions](https://img.shields.io/badge/Delphi%20Supported%20Versions-XE2..10.3%20Rio-blue.svg)
+
 - [Component Description](#component-description)
 - [Installing](#installing)
 - [Published Properties](#published-properties)
@@ -26,7 +28,7 @@ The MiniTable is a non-visual component where you can store records with fields 
 
 Open MiniTablePackage in Delphi. Then Build and Install.
 
-> Add sub-path Lib to the Library paths at Tool\Options.
+> Add sub-path "Lib" to the Library paths at Tool\Options.
 
 Supports Delphi XE2..Delphi 10.3 Rio
 
