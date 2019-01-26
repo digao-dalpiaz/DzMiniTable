@@ -16,6 +16,8 @@ uses System.Classes;
 type
   TMiniTable = class(TComponent)
   private
+    FAbout: String;
+
     FFileName: String;
     FJumpOpen: Boolean; //JumpOpen - if file not exists, bypass open method (loads blank table)
     FAutoSave: Boolean;
@@ -68,6 +70,8 @@ type
     function FieldExists(const FieldName: String): Boolean;
     function ReadDef(const FieldName: String; const Default: Variant): Variant;
   published
+    property About: String read FAbout;
+
     property FileName: String read FFileName write FFileName;
     property AutoSave: Boolean read FAutoSave write FAutoSave default False;
     property JumpOpen: Boolean read FJumpOpen write FJumpOpen default True;
@@ -89,6 +93,8 @@ end;
 constructor TMiniTable.Create(AOwner: TComponent);
 begin
   inherited;
+
+  FAbout := 'Digão Dalpiaz / Version 3.0';
 
   FJumpOpen := True; //default
 
