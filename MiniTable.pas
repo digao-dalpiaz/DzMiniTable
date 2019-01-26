@@ -94,7 +94,7 @@ constructor TMiniTable.Create(AOwner: TComponent);
 begin
   inherited;
 
-  FAbout := 'Digão Dalpiaz / Version 3.0';
+  FAbout := 'Digão Dalpiaz / Version 1.0';
 
   FJumpOpen := True; //default
 
