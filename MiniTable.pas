@@ -1,15 +1,20 @@
+{------------------------------------------------------------------------------
+TMiniTable component
+Developed by Rodrigo Depiné Dalpiaz (digão dalpiaz)
+To use as a small dinamic table stored as text file
+
+https://github.com/digao-dalpiaz/MiniTable
+
+Please, read the documentation at GitHub link.
+
+File estructure example:
+  ID=1,Nome=Jhon
+  ID=2,Nome=Mary
+------------------------------------------------------------------------------}
+
 unit MiniTable;
 
 interface
-
-{ TMiniTable - Non-visual component
-  To use as a small dinamic table stored as text file
-
-  File estructure example:
-  ID=1,Nome=Jhon
-  ID=2,Nome=Mary
-
-}
 
 uses System.Classes;
 
