@@ -2,11 +2,11 @@ unit UFrmExample;
 
 interface
 
-uses Vcl.Forms, MiniTable, Vcl.StdCtrls, Vcl.Controls, System.Classes;
+uses Vcl.Forms, DzMiniTable, Vcl.StdCtrls, Vcl.Controls, System.Classes;
 
 type
   TFrmExample = class(TForm)
-    MT: TMiniTable;
+    MT: TDzMiniTable;
     L: TListBox;
     LbList: TLabel;
     BtnAdd: TButton;

@@ -79,8 +79,8 @@ object FrmExample: TFrmExample
     TabOrder = 5
     OnClick = BtnMoveDownClick
   end
-  object MT: TMiniTable
-    Left = 216
+  object MT: TDzMiniTable
+    Left = 208
     Top = 56
   end
 end
