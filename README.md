@@ -1,4 +1,4 @@
-# MiniTable
+# DzMiniTable
 
 ## Delphi non-visual component to handle small dynamic table stored as plain text
 
@@ -34,7 +34,7 @@ The MiniTable is a non-visual component where you can store records with fields 
 
 ## Installing
 
-1. Open **MiniTablePackage** in Delphi.
+1. Open **DzMiniTable** package in Delphi.
 2. Ensure **Win32** Platform and **Release** config are selected.
 3. Then **Build** and **Install**.
 4. If you want to use Win64 platform, select this platform and Build again.
@@ -121,10 +121,10 @@ function Next: Boolean;
 Select the next record in the table, based in the current index position. This method is useful to iterate all record. See example below:
 
 ```delphi
-MiniTable.SelReset;
+DzMiniTable.SelReset;
 while MiniTable.Next do
 begin
-  ListBox.Add(MiniTable.F['Name']+' / '+MiniTable.F['Phone']);
+  ListBox.Add(DzMiniTable.F['Name']+' / '+MiniTable.F['Phone']);
 end;
 ```
 
@@ -144,16 +144,16 @@ procedure Post;
 Writes all change in the current record to the table. You don't need to start editting of the record. See example below:
 
 ```delphi
-MiniTable.New;
-MiniTable.F['Name'] := 'Jhon';
-MiniTable.F['Phone'] := '1111-2222';
-MiniTable.Post;
+DzMiniTable.New;
+DzMiniTable.F['Name'] := 'Jhon';
+DzMiniTable.F['Phone'] := '1111-2222';
+DzMiniTable.Post;
 ```
 or:
 ```delphi
-MiniTable.Select(3);
-MiniTable.F['Phone'] := '1111-2222';
-MiniTable.Post;
+DzMiniTable.Select(3);
+DzMiniTable.F['Phone'] := '1111-2222';
+DzMiniTable.Post;
 ```
 
 ```delphi
