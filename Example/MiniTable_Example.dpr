@@ -2,8 +2,8 @@ program MiniTable_Example;
 
 uses
   Vcl.Forms,
-  UFrmExample in 'UFrmExample.pas' {FrmExample},
-  UFrmEdit in 'UFrmEdit.pas' {FrmEdit};
+  UFrmEdit in 'UFrmEdit.pas' {FrmEdit},
+  UFrmExample in 'UFrmExample.pas' {FrmExample};
 
 {$R *.res}
 
