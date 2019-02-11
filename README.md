@@ -14,6 +14,10 @@
 
 ## What's New
 
+- 02/11/2019
+
+   - Include auto install app
+
 - 02/08/2019
 
    - Component renamed. Please full uninstall previous version before install this version. :warning:
@@ -37,6 +41,12 @@ But don't worry, here is the solution.
 The MiniTable is a non-visual component where you can store records with fields and values, and you can name the field, so you don't need to worry at future versions. You can add new fields at any time, just reading and writing them.
 
 ## Installing
+
+### Auto install
+
+Close Delphi IDE and run **CompInstall.exe** app to auto install component into Delphi.
+
+### Manual install
 
 1. Open **DzMiniTable** package in Delphi.
 2. Ensure **Win32** Platform and **Release** config are selected.
