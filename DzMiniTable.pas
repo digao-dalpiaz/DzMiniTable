@@ -7,7 +7,7 @@ https://github.com/digao-dalpiaz/DzMiniTable
 
 Please, read the documentation at GitHub link.
 
-File estructure example:
+File structure example:
   ID=1,Nome=Jhon
   ID=2,Nome=Mary
 ------------------------------------------------------------------------------}
@@ -24,7 +24,7 @@ type
     FAbout: String;
 
     FFileName: String;
-    FJumpOpen: Boolean; //JumpOpen - if file not exists, bypass open method (loads blank table)
+    FJumpOpen: Boolean; //JumpOpen - if file not exists, bypass open method (load blank table)
     FAutoSave: Boolean;
 
     FSelIndex: Integer;
