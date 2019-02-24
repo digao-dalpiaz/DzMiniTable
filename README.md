@@ -59,9 +59,9 @@ Supports Delphi XE2..Delphi 10.3 Rio
 
 ## Published Properties
 
-`AutoSave: Boolean` = Enables auto save to specifyed FileName at any method that writes any change to the table
+`AutoSave: Boolean` = Enables auto save to specified FileName at any method that writes any change to the table
 
-`FileName: String` = Specifyes the full file name to Open and Save the table
+`FileName: String` = Specifies the full file name to Open and Save the table
 
 `JumpOpen: Boolean` = When this property is enabled, if the file does not exist at Open method, the table will be loaded empty without raise any exception.
 
@@ -83,7 +83,7 @@ If you are reading field value and the field does not exist, the result is an em
 ```delphi
 procedure SelReset;
 ```
-Resets the selection of record to none. You can use this method to inicialize an iteration of record, ensuring the selected record is reseted.
+Resets the selection of record to none. You can use this method to initialize an iteration of record, ensuring the selected record is reseted.
 
 ```delphi
 function InRecord: Boolean;
@@ -93,12 +93,12 @@ Returns true if there is a record selected
 ```delphi
 procedure Open;
 ```
-Load the table from file specifyed at FileName property
+Load the table from file specified at FileName property
 
 ```delphi
 procedure Save;
 ```
-Save the table to file specifyed at FileName property
+Save the table to file specified at FileName property
 
 ```delphi
 procedure EmptyTable;
@@ -146,21 +146,21 @@ end;
 ```delphi
 procedure New;
 ```
-Create a new record at the end of the table position and select it, so you can imediatelly start write fields.
+Create a new record at the end of the table position and select it, so you can immediately start write fields.
 
 ```delphi
 procedure Insert(Index: Integer);
 ```
-Insert a new record at the index position and select it, so you can imediatelly start write fields.
+Insert a new record at the index position and select it, so you can immediately start write fields.
 
 ```delphi
 procedure Post;
 ```
-Writes all change in the current record to the table. You don't need to start editting of the record. See example below:
+Writes all change in the current record to the table. You don't need to start editing of the record. See example below:
 
 ```delphi
 DzMiniTable.New;
-DzMiniTable.F['Name'] := 'Jhon';
+DzMiniTable.F['Name'] := 'John';
 DzMiniTable.F['Phone'] := '1111-2222';
 DzMiniTable.Post;
 ```
