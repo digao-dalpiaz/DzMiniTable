@@ -4,7 +4,7 @@ object FrmExample: TFrmExample
   BorderIcons = [biSystemMenu, biMinimize]
   BorderStyle = bsSingle
   Caption = 'MiniTable Example'
-  ClientHeight = 242
+  ClientHeight = 297
   ClientWidth = 385
   Color = clBtnFace
   Font.Charset = DEFAULT_CHARSET
@@ -29,7 +29,7 @@ object FrmExample: TFrmExample
     Left = 8
     Top = 24
     Width = 273
-    Height = 209
+    Height = 265
     ItemHeight = 13
     TabOrder = 0
     OnClick = LClick
@@ -78,6 +78,15 @@ object FrmExample: TFrmExample
     Caption = 'Move Down'
     TabOrder = 5
     OnClick = BtnMoveDownClick
+  end
+  object BtnFind: TButton
+    Left = 288
+    Top = 240
+    Width = 89
+    Height = 33
+    Caption = 'Find'
+    TabOrder = 6
+    OnClick = BtnFindClick
   end
   object MT: TDzMiniTable
     Left = 208

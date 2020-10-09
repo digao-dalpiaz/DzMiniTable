@@ -19,28 +19,43 @@ interface
 uses System.Classes;
 
 type
+  TRecordStore = class
+  private
+    S: TStringList;
+
+    procedure LoadRecordFromString(const Data: string);
+    function GetRecordAsString: string;
+
+    function ReadField(const FieldName: string): string;
+    procedure WriteField(const FieldName, Value: string);
+  public
+    constructor Create;
+    destructor Destroy; override;
+  end;
+
   TDzMiniTable = class(TComponent)
   private
-    FAbout: String;
+    FAbout: string;
 
-    FFileName: String;
+    FFileName: string;
     FJumpOpen: Boolean; //JumpOpen - if file not exists, bypass open method (load blank table)
     FAutoSave: Boolean;
 
     FSelIndex: Integer;
 
-    Tb, S: TStringList;
+    Tb: TStringList;
+    CurRecord: TRecordStore;
 
-    function GetField(const FieldName: String): Variant;
-    procedure SetField(const FieldName: String; const Value: Variant);
+    function GetField(const FieldName: string): Variant;
+    procedure SetField(const FieldName: string; const Value: Variant);
 
     function GetCount: Integer;
 
     procedure Reset;
 
     procedure CheckAutoSave;
-    function GetMemString: String;
-    procedure SetMemString(const Value: String);
+    function GetMemString: string;
+    procedure SetMemString(const Value: string);
     procedure CheckInRecord;
   public
     constructor Create(AOwner: TComponent); override;
@@ -48,10 +63,10 @@ type
 
     property Lines: TStringList read Tb;
 
-    property MemString: String read GetMemString write SetMemString;
+    property MemString: string read GetMemString write SetMemString;
     property SelIndex: Integer read FSelIndex;
     property Count: Integer read GetCount;
-    property F[const FieldName: String]: Variant read GetField write SetField;
+    property F[const FieldName: string]: Variant read GetField write SetField;
 
     procedure SelReset;
     function InRecord: Boolean;
@@ -71,13 +86,17 @@ type
     procedure Delete;
     procedure MoveDown;
     procedure MoveUp;
-    function Find(const FieldName: String; const Value: Variant; KeepIndex: Boolean = False): Boolean;
-    function FieldExists(const FieldName: String): Boolean;
-    function ReadDef(const FieldName: String; const Default: Variant): Variant;
-  published
-    property About: String read FAbout;
 
-    property FileName: String read FFileName write FFileName;
+    function FieldExists(const FieldName: string): Boolean;
+    function ReadDef(const FieldName: string; const Default: Variant): Variant;
+
+    function FindIndex(const FieldName: string; const Value: Variant): Integer;
+    function Locate(const FieldName: string; const Value: Variant): Boolean;
+    function ContainsValue(const FieldName: string; const Value: Variant): Boolean;
+  published
+    property About: string read FAbout;
+
+    property FileName: string read FFileName write FFileName;
     property AutoSave: Boolean read FAutoSave write FAutoSave default False;
     property JumpOpen: Boolean read FJumpOpen write FJumpOpen default True;
   end;
@@ -95,6 +114,40 @@ end;
 
 //
 
+constructor TRecordStore.Create;
+begin
+  inherited;
+  S := TStringList.Create;
+end;
+
+destructor TRecordStore.Destroy;
+begin
+  S.Free;
+  inherited;
+end;
+
+procedure TRecordStore.LoadRecordFromString(const Data: string);
+begin
+  S.CommaText := Data;
+end;
+
+function TRecordStore.GetRecordAsString: string;
+begin
+  Result := S.CommaText;
+end;
+
+function TRecordStore.ReadField(const FieldName: string): string;
+begin
+  Result := S.Values[FieldName];
+end;
+
+procedure TRecordStore.WriteField(const FieldName, Value: string);
+begin
+  S.Values[FieldName] := Value;
+end;
+
+//
+
 constructor TDzMiniTable.Create(AOwner: TComponent);
 begin
   inherited;
@@ -104,7 +157,7 @@ begin
   FJumpOpen := True; //default
 
   Tb := TStringList.Create; //full table
-  S := TStringList.Create; //selected record
+  CurRecord := TRecordStore.Create; //selected record
 
   FSelIndex := -1;
 end;
@@ -112,7 +165,7 @@ end;
 destructor TDzMiniTable.Destroy;
 begin
   Tb.Free;
-  S.Free;
+  CurRecord.Free;
 
   inherited;
 end;
@@ -132,7 +185,7 @@ procedure TDzMiniTable.SelReset;
 begin
   if FSelIndex=-1 then Exit;
 
-  S.Clear; //clear selected record
+  CurRecord.S.Clear; //clear selected record
   FSelIndex := -1;
 end;
 
@@ -157,12 +210,12 @@ begin
   Tb.SaveToFile(FFileName);
 end;
 
-function TDzMiniTable.GetMemString: String;
+function TDzMiniTable.GetMemString: string;
 begin
   Result := Tb.Text;
 end;
 
-procedure TDzMiniTable.SetMemString(const Value: String);
+procedure TDzMiniTable.SetMemString(const Value: string);
 begin
   Reset;
 
@@ -180,25 +233,25 @@ begin
   Result := ( Count = 0 );
 end;
 
-function TDzMiniTable.GetField(const FieldName: String): Variant;
+function TDzMiniTable.GetField(const FieldName: string): Variant;
 begin
   CheckInRecord;
 
-  Result := S.Values[FieldName];
+  Result := CurRecord.ReadField(FieldName);
 end;
 
-procedure TDzMiniTable.SetField(const FieldName: String; const Value: Variant);
+procedure TDzMiniTable.SetField(const FieldName: string; const Value: Variant);
 begin
   CheckInRecord;
 
-  S.Values[FieldName] := Value;
+  CurRecord.WriteField(FieldName, Value);
 end;
 
 procedure TDzMiniTable.Select(Index: Integer);
 begin
   if Index>Count-1 then raise Exception.CreateFmt('Record of index %d does not exist', [Index]);
 
-  S.CommaText := Tb[Index];
+  CurRecord.LoadRecordFromString(Tb[Index]);
   FSelIndex := Index;
 end;
 
@@ -228,13 +281,13 @@ end;
 
 procedure TDzMiniTable.New;
 begin
-  Tb.Add('');
+  Tb.Add(string.Empty);
   Last;
 end;
 
 procedure TDzMiniTable.Insert(Index: Integer);
 begin
-  Tb.Insert(Index, '');
+  Tb.Insert(Index, string.Empty);
   Select(Index);
 end;
 
@@ -242,14 +295,14 @@ procedure TDzMiniTable.EmptyRecord;
 begin
   CheckInRecord;
 
-  S.Clear;
+  CurRecord.S.Clear;
 end;
 
 procedure TDzMiniTable.Post;
 begin
   CheckInRecord;
 
-  Tb[FSelIndex] := S.CommaText;
+  Tb[FSelIndex] := CurRecord.GetRecordAsString;
 
   CheckAutoSave;
 end;
@@ -300,38 +353,61 @@ begin
   if FAutoSave then Save;
 end;
 
-function TDzMiniTable.Find(const FieldName: String; const Value: Variant; KeepIndex: Boolean = False): Boolean;
-var Idx: Integer;
-begin
-  Result := False;
-
-  Idx := FSelIndex;
-  try
-    SelReset;
-    while Next do
-      if F[FieldName] = Value then Exit(True);
-  finally
-    if KeepIndex then
-      if Idx<>-1 then
-        Select(Idx)
-      else
-        SelReset;
-  end;
-end;
-
-function TDzMiniTable.FieldExists(const FieldName: String): Boolean;
+function TDzMiniTable.FieldExists(const FieldName: string): Boolean;
 begin
   CheckInRecord;
 
-  Result := ( S.IndexOfName(FieldName) <> -1 );
+  Result := ( CurRecord.S.IndexOfName(FieldName) <> -1 );
 end;
 
-function TDzMiniTable.ReadDef(const FieldName: String; const Default: Variant): Variant;
+function TDzMiniTable.ReadDef(const FieldName: string; const Default: Variant): Variant;
 begin
   if FieldExists(FieldName) then
     Result := F[FieldName]
   else
     Result := Default;
+end;
+
+function TDzMiniTable.FindIndex(const FieldName: string; const Value: Variant): Integer;
+var
+  I: Integer;
+  R: TRecordStore;
+begin
+  Result := -1;
+
+  R := TRecordStore.Create;
+  try
+    for I := 0 to Tb.Count-1 do
+    begin
+      R.LoadRecordFromString(Tb[I]);
+      if R.ReadField(FieldName) = Value then
+      begin
+        Result := I;
+        Break;
+      end;
+    end;
+  finally
+    R.Free;
+  end;
+end;
+
+function TDzMiniTable.Locate(const FieldName: string; const Value: Variant): Boolean;
+var
+  Idx: Integer;
+begin
+  Result := False;
+
+  Idx := FindIndex(FieldName, Value);
+  if Idx <> -1 then
+  begin
+    Select(Idx);
+    Result := True;
+  end;
+end;
+
+function TDzMiniTable.ContainsValue(const FieldName: string; const Value: Variant): Boolean;
+begin
+  Result := FindIndex(FieldName, Value) <> -1;
 end;
 
 end.

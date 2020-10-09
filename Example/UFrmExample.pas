@@ -14,6 +14,7 @@ type
     BtnDel: TButton;
     BtnMoveUp: TButton;
     BtnMoveDown: TButton;
+    BtnFind: TButton;
     procedure FormCreate(Sender: TObject);
     procedure BtnDelClick(Sender: TObject);
     procedure LClick(Sender: TObject);
@@ -21,6 +22,7 @@ type
     procedure FormDestroy(Sender: TObject);
     procedure BtnMoveUpClick(Sender: TObject);
     procedure BtnMoveDownClick(Sender: TObject);
+    procedure BtnFindClick(Sender: TObject);
   private
     procedure LoadList;
   public
@@ -34,10 +36,12 @@ implementation
 
 {$R *.dfm}
 
-uses UFrmEdit, System.SysUtils;
+uses UFrmEdit, System.SysUtils, Vcl.Dialogs, System.UITypes;
 
 procedure TFrmExample.FormCreate(Sender: TObject);
 begin
+  ReportMemoryLeaksOnShutdown := True;
+
   MT.FileName := ExtractFilePath(Application.ExeName)+'DATA.TXT';
 
   LoadList;
@@ -102,6 +106,18 @@ begin
   MT.MoveDown;
   L.Items.Exchange(L.ItemIndex, L.ItemIndex+1);
   UpdButtons;
+end;
+
+procedure TFrmExample.BtnFindClick(Sender: TObject);
+var Value: string;
+begin
+  if InputQuery('Find', 'Name:', Value) then
+  begin
+    if MT.Locate('NAME', Value) then
+      L.ItemIndex := MT.SelIndex
+    else
+      MessageDlg('Name not found', mtError, [mbOK], 0);
+  end;
 end;
 
 end.
