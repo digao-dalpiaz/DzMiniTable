@@ -15,6 +15,10 @@
 
 ## What's New
 
+- 10/09/2020
+
+   - New methods to search data
+
 - 05/03/2020
 
    - Updated CompInstall to version 1.2
@@ -191,10 +195,20 @@ procedure MoveUp;
 Move the current record to one index up
 
 ```delphi
-function Find(const FieldName: String; const Value: Variant; KeepIndex: Boolean = False): Boolean;
+function FindIndex(const FieldName: string; const Value: Variant): Integer;
 ```
-Use this function to locate any field value on all records. The KeepIndex parameter allows you to specify if you want keep the current position of record, just returning true or false if the field value was located.
-If you want to auto-select the found record, use KeepIndex=False (the default parameter value).
+Find any field value on all records, returning record index position.
+
+```delphi
+function Locate(const FieldName: string; const Value: Variant): Boolean;
+```
+Find any field value on all records, returning true if record found, and **positioning it as current record**.
+If no record is found, the current position will not be changed.
+
+```delphi
+function ContainsValue(const FieldName: string; const Value: Variant): Boolean;
+```
+Find any field value on all records, returning true if record found.
 
 ```delphi
 function FieldExists(const FieldName: String): Boolean;

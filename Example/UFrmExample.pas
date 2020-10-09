@@ -40,6 +40,8 @@ uses UFrmEdit, System.SysUtils, Vcl.Dialogs, System.UITypes;
 
 procedure TFrmExample.FormCreate(Sender: TObject);
 begin
+  ReportMemoryLeaksOnShutdown := True;
+
   MT.FileName := ExtractFilePath(Application.ExeName)+'DATA.TXT';
 
   LoadList;
