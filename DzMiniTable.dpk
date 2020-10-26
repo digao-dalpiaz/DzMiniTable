@@ -26,7 +26,7 @@ package DzMiniTable;
 {$IMAGEBASE $400000}
 {$DEFINE RELEASE}
 {$ENDIF IMPLICITBUILDING}
-{$DESCRIPTION 'Digao Dalpiaz - Mini Table Component'}
+{$DESCRIPTION 'Digao Dalpiaz - DzMiniTable component'}
 {$IMPLICITBUILD ON}
 
 requires
