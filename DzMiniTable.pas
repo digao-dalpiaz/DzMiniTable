@@ -1,7 +1,7 @@
 {------------------------------------------------------------------------------
 TDzMiniTable component
-Developed by Rodrigo Depiné Dalpiaz (digão dalpiaz)
-To use as a small dinamic table stored as text file
+Developed by Rodrigo Depine Dalpiaz (digao dalpiaz)
+To use as a small dynamic table stored as text file
 
 https://github.com/digao-dalpiaz/DzMiniTable
 
@@ -152,7 +152,7 @@ constructor TDzMiniTable.Create(AOwner: TComponent);
 begin
   inherited;
 
-  FAbout := 'Digão Dalpiaz / Version 1.0';
+  FAbout := 'Digao Dalpiaz / Version 1.2';
 
   FJumpOpen := True; //default
 

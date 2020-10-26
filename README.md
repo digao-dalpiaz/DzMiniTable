@@ -15,7 +15,11 @@
 
 ## What's New
 
-- 10/09/2020
+- 10/26/2020 (Version 1.2)
+
+   - Updated CompInstall to version 2.0 (now supports GitHub auto-update)
+
+- 10/09/2020 (Version 1.1)
 
    - New methods to search data
 
