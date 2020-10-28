@@ -152,7 +152,7 @@ constructor TDzMiniTable.Create(AOwner: TComponent);
 begin
   inherited;
 
-  FAbout := 'Digao Dalpiaz / Version 1.2';
+  FAbout := 'Digao Dalpiaz / Version 1.3';
 
   FJumpOpen := True; //default
 
