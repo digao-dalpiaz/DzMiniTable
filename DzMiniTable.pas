@@ -107,6 +107,8 @@ implementation
 
 uses System.SysUtils;
 
+const STR_VERSION = '1.4';
+
 procedure Register;
 begin
   RegisterComponents('Digao', [TDzMiniTable]);
@@ -152,7 +154,7 @@ constructor TDzMiniTable.Create(AOwner: TComponent);
 begin
   inherited;
 
-  FAbout := 'Digao Dalpiaz / Version 1.3';
+  FAbout := 'Digao Dalpiaz / Version '+STR_VERSION;
 
   FJumpOpen := True; //default
 
