@@ -107,7 +107,7 @@ implementation
 
 uses System.SysUtils;
 
-const STR_VERSION = '1.5';
+const STR_VERSION = '1.6';
 
 procedure Register;
 begin
