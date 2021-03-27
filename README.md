@@ -9,6 +9,8 @@
 
 [![ko-fi](https://ko-fi.com/img/githubbutton_sm.svg)](https://ko-fi.com/C0C53LVFN)
 
+Please, checkout my new component [DzXMLTable](https://github.com/digao-dalpiaz/DzXMLTable), it's a new concept of this component, storing data in XML format.
+
 - [What's New](#whats-new)
 - [Component Description](#component-description)
 - [Installing](#installing)
