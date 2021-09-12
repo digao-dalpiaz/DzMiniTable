@@ -20,6 +20,13 @@ Please, checkout my new component [DzXMLTable](https://github.com/digao-dalpiaz/
 
 ## What's New
 
+- 09/12/2021 (Version 1.8)
+
+   - Delphi 11 auto-install support.
+
+<details>
+  <summary>Click here to view the entire changelog</summary>
+
 - 03/13/2021 (Version 1.7)
 
    - Removed CompInstall.exe from component sources due to AV false positive warning (now you can get it directly from CompInstall repository).
@@ -63,6 +70,8 @@ Please, checkout my new component [DzXMLTable](https://github.com/digao-dalpiaz/
 - 02/07/2019
 
    - Add Win64 support (library folders changed!) :warning:
+   
+</details>
 
 ## Component Description
 
